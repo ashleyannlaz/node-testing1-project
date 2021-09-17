@@ -6,9 +6,15 @@
  * EXAMPLE
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
+
+// reduce(previousValue, current value)
 function trimProperties(obj) {
-  // ✨ implement
+  return Object.keys(obj).reduce((acc, curr) => {
+    acc[curr] = obj[curr].trim();
+    return acc;
+  }, {});
 }
+// console.log(trimProperties({ bob: "bob  ", bun: "boo   " }));
 
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
@@ -19,7 +25,11 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  for(let prop in obj) {
+    obj[prop] = obj[prop].trim()
+    
+  } 
+  return obj
 }
 
 /**
@@ -31,7 +41,13 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  let result = integers[0].integer
+  for(let idx = 1; idx < integers.length; idx++){
+    if(integers[idx].integer > result){
+      result = integers[idx].integer
+    } 
+  }
+  return result;
 }
 
 class Counter {
@@ -93,8 +109,8 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
-    this.odometer = 0 // car initilizes with zero miles
-    this.tank = tankSize // car initiazes full of gas
+    this.odometer = 0; // car initilizes with zero miles
+    this.tank = tankSize; // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
   }
 
@@ -156,4 +172,4 @@ module.exports = {
   Counter,
   Seasons,
   Car,
-}
+};
